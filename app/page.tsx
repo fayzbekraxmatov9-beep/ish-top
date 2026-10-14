@@ -1,69 +1,127 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const jobs = [
+  {
+    title: "Frontend Developer",
+    company: "IT Company",
+    location: "Toshkent",
+    salary: "8 000 000 - 12 000 000 so'm",
+    type: "Full-time",
+  },
+  {
+    title: "SMM Manager",
+    company: "Digital Agency",
+    location: "Toshkent",
+    salary: "5 000 000 - 8 000 000 so'm",
+    type: "Full-time",
+  },
+  {
+    title: "Grafik Dizayner",
+    company: "Creative Studio",
+    location: "Samarqand",
+    salary: "4 000 000 - 7 000 000 so'm",
+    type: "Remote",
+  },
+  {
+    title: "Backend Developer",
+    company: "Tech Solutions",
+    location: "Toshkent",
+    salary: "10 000 000 - 16 000 000 so'm",
+    type: "Full-time",
+  },
+  {
+    title: "UI/UX Designer",
+    company: "Design Studio",
+    location: "Buxoro",
+    salary: "6 000 000 - 10 000 000 so'm",
+    type: "Remote",
+  },
+  {
+    title: "Marketing Manager",
+    company: "Business Group",
+    location: "Toshkent",
+    salary: "7 000 000 - 11 000 000 so'm",
+    type: "Full-time",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main className="min-h-screen bg-gray-50">
+      <section className="bg-blue-600 px-6 py-20 text-white">
+        <div className="mx-auto max-w-6xl">
+          <h1 className="text-5xl font-bold">
+            O'zingizga mos ishni toping
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="mt-4 text-lg text-blue-100">
+            O'zbekistondagi eng yaxshi vakansiyalarni bir joydan qidiring.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+
+          <div className="mt-8 flex max-w-4xl gap-3 rounded-xl bg-white p-3">
+            <input
+              className="flex-1 rounded-lg px-4 py-3 text-gray-800 outline-none"
+              placeholder="Kasb yoki lavozim..."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+            <input
+              className="w-56 rounded-lg px-4 py-3 text-gray-800 outline-none"
+              placeholder="Shahar..."
+            />
+
+            <button className="rounded-lg bg-blue-600 px-7 py-3 font-semibold text-white">
+              Qidirish
+            </button>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-3xl font-bold text-gray-900">
+            Yangi vakansiyalar
+          </h2>
+
+          <Link
+            href="/jobs"
+            className="font-semibold text-blue-600"
+          >
+            Barchasini ko'rish →
+          </Link>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {jobs.map((job) => (
+            <Link
+              href={`/jobs/${job.id}`}
+              key={job.id}
+              className="rounded-2xl border bg-white p-6 transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-xl">
+                💼
+              </div>
+
+              <h3 className="text-xl font-bold text-gray-900">
+                {job.title}
+              </h3>
+
+              <p className="mt-2 text-gray-500">
+                {job.company}
+              </p>
+
+              <div className="mt-5 space-y-2 text-sm text-gray-600">
+                <p>📍 {job.location}</p>
+                <p>💰 {job.salary}</p>
+                <p>🕐 {job.type}</p>
+              </div>
+
+              <div className="mt-6 rounded-lg bg-blue-50 py-3 text-center font-semibold text-blue-600">
+                Batafsil ko'rish
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
